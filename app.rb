@@ -1,7 +1,8 @@
-	
-require_relative 'lib/game'
-require_relative 'lib/player'
+#require 'bundler'
+#Bundler.require
 
+#require_relative 'lib/game'
+require_relative 'lib/player'
 
 player1=Player.new("Josiane",10)
 player2=Player.new("José",10)
@@ -24,8 +25,8 @@ puts player2.show_state
 			puts "Voici l'état de nos joueurs : "
 			puts player1.show_state
 			puts player2.show_state
-
-	end
+		
+		end
 
 
 binding.pry

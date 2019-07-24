@@ -30,6 +30,7 @@ attr_accessor :player_name, :life_points
 
 		if @life_points <= 0
 			puts "Le joueur #{@player_name} a été tué !"
+			puts " "
 		end
 	end
 
@@ -48,7 +49,7 @@ attr_accessor :player_name, :weapon_level #integer détermine lvl de l'arme
 
 
 	def show_state
-		puts "#{player_name} a #{@life_points} point(s) de vie et une arme de niveau #{weapon_level}."
+		puts "#{player_name} a #{@life_points} point(s) de vie et une arme de niveau #{@weapon_level}."
 	end
 
 
@@ -58,30 +59,42 @@ attr_accessor :player_name, :weapon_level #integer détermine lvl de l'arme
 
 
   	def search_weapon
-  		search_weapon = rand(1..6)
-  		puts "Tu as trouvé une arme de niveau #{search_weapon} !"
-  		if search_weapon > weapon_level
-  			weapon_level = search_weapon
-  			puts "Wololololo ! Elle est meilleure que ton arme actuelle : tu la prends bien sûr ;D !"
+  		found_weapon = rand(1..6)
+  		if found_weapon > @weapon_level
+  		   @weapon_level = found_weapon
+			puts "Tu as trouvé une arme de niveau #{found_weapon} !"
+  			puts " > Wololololo ! Elle est meilleure que ton arme actuelle : tu la prends bien sûr ;D !"
   		else 
-  			puts "Nomdediou ! Elle n'est pas mieux que ton arme actuelle :'( !"
+  			puts "Tu as trouvé une arme de niveau #{found_weapon} !"
+  			puts " > Nomdediou ! Elle n'est pas mieux que ton arme actuelle :'( !"
   		end
   	end
 
+	def attacks(target)
+		puts  "#{player_name} attaque le joueur #{target.player_name}"
+		hit = compute_damage*@weapon_level
+		puts "> il lui inflige #{hit} point(s) de dommages."
+		life_points = target.gets_damage(hit)
+	end
 
-  	def search_health_pack
-  		health_pack = rand(1..6) 
-  		if health_pack == 1
-  			puts "Tu n'as rien trouvé..."
-  		elsif health_pack == (2..5)
-  			@life_points += 50
-  			@life_points > 100 ? @life_points = 100
-  			puts "Bravo, tu as trouvé un pack de +50 points de vie !"
-  		else health_pack == 6
-  			@life_points += 80
-  			@life_points > 100 ? @life_points = 100
-  			puts "Waow, tu as trouvé un pack de +80 points de vie !"	
-  		end
-  	end
+	def search_health_pack
+		health_pack = rand(1..6) 
+		if health_pack  == 1
+			puts " > Tu fouilles ton froc, mais il n'y a rien :( !"
+		elsif health_pack == (2..5)
+			@life_points += 50
+			@life_points > 100 ? @life_points = 100 : @life_points 
+			puts " > Tu fouilles tes chaussures, tu as trouvé un pack de bières avec pour effet +50 points de vie :D !"
+		else 
+			@life_points += 80
+			@life_points > 100 ? @life_points = 100 : @life_points 
+			puts " > Tu fouilles tout en pro-fon-deur... Waouh ! Tu as trouvé une potion qui te rajoute 80 points de vie ;D !"
+		end 
+	end
+		
+end	
 
-end
+
+#Question : 
+#Que signifie : "@life_points > 100 ? @life_points = 100 : @life_points "
+#Pourquoi @ sur weapon_level et non found_weapon ?
