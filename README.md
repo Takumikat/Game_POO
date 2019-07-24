@@ -1,4 +1,5 @@
 Travail sur POO (Programmation Orientée Objet)
+Je n'ai pas fini le game.rb et donc le app_3.rb non plus.
 Bonne correction !
 
 Remarque :
