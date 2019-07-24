@@ -10,3 +10,6 @@ Il faut alors :
  git add .
  git commit -m 'message'
  git push -u origin master
+
+
+https://longair.net/blog/2009/04/16/git-fetch-and-merge/
